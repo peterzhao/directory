@@ -112,7 +112,8 @@ function getFamilies(worksheet) {
 }
 
 function createDivs(data, className) {
-  if(!data) return '';
+  if (!data) return '';
+  if (['address', 'cityZipCode'].includes(className) && process.env.NO_ADDRESS === 'true') return '';
   return data.split(os.EOL).map((value) => `<div class="${className}">${value}</div>`).join(os.EOL);
 }
 

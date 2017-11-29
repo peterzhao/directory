@@ -1,6 +1,6 @@
 # How to print the directory
 1. Make sure there are Directory-Chinese.csv and Directory-English.csv in the working directory
-1. Run `node genereate-html.js`
+1. Run `node genereate-html.js` or `NO_ADDRESS=true node genereate-html.js` if you don't want to print address in contact section.
 1. open directory.html in Google Chrome
 1. Open File/Print in the browser. Make sure:
   - destination: PDF
