@@ -4,7 +4,6 @@ const os = require('os');
 const cityZipCodeExpression = /^([a-zA-Z\s]+)[,，]\s*([A-Z][0-9][A-Z]\s*[0-9][A-Z][0-9])$/;
 const sheetNames = ['Chinese', 'English'];
 
-
 const notEmpty = (text) => {
   return text && text.trim && text.trim().length > 0;
 };
@@ -78,16 +77,16 @@ function readSheet(workbook, sheetName) {
     const familyName = getText(row.values[1]);
     const firstName = getText(row.values[2]);
     const chineseName = getText(row.values[3]);
-    if ((notEmpty(familyName) && familyName !== 'English Ministry')
-      || rowNumber === (worksheet.rowCount - 1)) {
-      if (family) families.push(family);
+    const contact = getText(row.values[5]);
+    if (notEmpty(familyName) && familyName !== 'English Ministry') {
       family = {}
       family.members = [];
+      families.push(family);
     }
     if (family && (notEmpty(familyName) || notEmpty(firstName) || notEmpty(chineseName))) {
       family.members.push({familyName, firstName, chineseName});
     }
-    parseContact(family, getText(row.values[5]));
+    parseContact(family, contact);
   });
   return families;
 };

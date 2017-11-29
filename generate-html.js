@@ -99,10 +99,10 @@ function getFamilies(worksheet) {
     const zipCode = row.values[6] || '';
     const phoneNumber = row.values[7] || '';
     const email = row.values[8] || '';
-    if (notEmpty(familyName) || rowNumber === (worksheet.rowCount - 1)) {
-      if (family) families.push(family);
+    if (notEmpty(familyName)) {
       family = {familyName, address, cityZipCode: `${city} ${zipCode}`, phoneNumber, email};
       family.members = [];
+      families.push(family);
     }
     if (family && (notEmpty(familyName) || notEmpty(firstName) || notEmpty(chineseName))) {
       family.members.push({firstName, chineseName});
